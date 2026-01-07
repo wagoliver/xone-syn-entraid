@@ -1,0 +1,9 @@
+# Sensitive/local files
+.env
+cred.txt
+credentials
+
+# Local data/artifacts
+n8n_data/
+BackUp/
+xone-sync.zip

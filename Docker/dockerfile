@@ -1,0 +1,8 @@
+FROM n8nio/n8n:latest
+
+USER root
+# Python + requests direto dos pacotes do Alpine (sem pip)
+RUN apk add --no-cache python3 py3-pip py3-requests
+
+# volta para o usuário padrão do n8n
+USER node

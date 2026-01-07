@@ -1,0 +1,29 @@
+services:
+  n8n:
+    build: .                       # usa o Dockerfile acima (n8n + python)
+    container_name: n8n
+    ports:
+      - "5678:5678"
+    environment:
+      # UI / auth / host
+      - N8N_BASIC_AUTH_ACTIVE=${N8N_BASIC_AUTH_ACTIVE}
+      - N8N_BASIC_AUTH_USER=${N8N_BASIC_AUTH_USER}
+      - N8N_BASIC_AUTH_PASSWORD=${N8N_BASIC_AUTH_PASSWORD}
+      - N8N_HOST=${N8N_HOST}
+      - N8N_PORT=${N8N_PORT}
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
+
+      # suas variáveis do script Python (ficam disponíveis no processo do n8n)
+      - AZ_TENANT_ID=${AZ_TENANT_ID}
+      - AZ_CLIENT_ID=${AZ_CLIENT_ID}
+      - AZ_CLIENT_SECRET=${AZ_CLIENT_SECRET}
+      - XONE_API_TOKEN=${XONE_API_TOKEN}
+
+    volumes:
+      # Dados do n8n (workflows, credenciais etc.)
+      - ./n8n_data:/home/node/.n8n
+
+      # Seu diretório do Windows mapeado dentro do container
+      - /d/xone-sync-users:/data/scripts
+
+    restart: unless-stopped
