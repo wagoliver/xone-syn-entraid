@@ -1,5 +1,6 @@
 # Sensitive/local files
 .env
+.env.*
 cred.txt
 credentials
 
@@ -7,3 +8,12 @@ credentials
 n8n_data/
 BackUp/
 xone-sync.zip
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+.venv/
+venv/
